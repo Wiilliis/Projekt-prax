@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrevoStol — Masívne drevené stoly</title>
+<meta name="description" content="Ručne vyrábané masívne drevené stoly z dubu, orecha a buka. Jedálenské, konferenčné a pracovné stoly na mieru.">
+<style>
+:root{
+  --bg:#faf6ef;
+  --dark:#2b211a;
+  --brown:#6f4e37;
+  --accent:#c17a3a;
+  --accent2:#2f5d3a;
+  --card:#ffffff;
+  --muted:#8a7a6b;
+  --line:#e9ddd0;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--dark);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.container{max-width:1150px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:rgba(250,246,239,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:22px;font-weight:600;font-size:15px}
+.links a{opacity:.8}.links a:hover{opacity:1;color:var(--accent)}
+.btn{display:inline-block;background:var(--dark);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;border:0;cursor:pointer;transition:.2s}
+.btn:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-light{background:#fff;color:var(--dark);border:1px solid var(--line)}
+.burger{display:none;background:none;border:0;font-size:26px;cursor:pointer}
+.hero{padding:64px 0 36px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.badge{display:inline-block;background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:16px}
+h1{font-size:52px;line-height:1.05;letter-spacing:-1.5px;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:18px;color:#5a4d42;margin-bottom:24px;max-width:520px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.stats{display:flex;gap:28px;flex-wrap:wrap}
+.stats b{font-size:24px;display:block}
+.stats span{font-size:14px;color:var(--muted)}
+.hero-visual{background:linear-gradient(145deg,#6f4e37,#3a2a1f 60%,#1e150f);border-radius:24px;padding:28px;color:#f5e8d5;position:relative;overflow:hidden;min-height:420px;display:flex;flex-direction:column;justify-content:end}
+.hero-visual::before{content:"";position:absolute;inset:0;background:
+repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 2px,transparent 2px 42px),
+radial-gradient(600px 300px at 70% 20%,rgba(193,122,58,.6),transparent);
+pointer-events:none}
+.table-draw{position:relative;height:220px;margin-bottom:18px}
+.table-top{position:absolute;top:70px;left:5%;right:5%;height:26px;background:linear-gradient(#e9b77a,#b67a3a);border-radius:10px;box-shadow:0 18px 30px rgba(0,0,0,.4)}
+.table-leg{position:absolute;top:96px;width:18px;height:110px;background:linear-gradient(#8a5a2e,#5a3a1e);border-radius:6px}
+.leg-l{left:12%}.leg-r{right:12%}
+.grain{position:absolute;top:76px;left:8%;right:8%;height:2px;background:rgba(90,50,20,.4);box-shadow:0 8px 0 rgba(90,50,20,.25),0 14px 0 rgba(90,50,20,.15)}
+section{padding:56px 0}
+.sec-title{font-size:34px;letter-spacing:-.8px;margin-bottom:10px}
+.sec-sub{color:var(--muted);margin-bottom:28px;max-width:660px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(43,33,26,.1)}
+.card h3{margin:10px 0 6px;font-size:19px}
+.card p{color:#66594d;font-size:15px}
+.icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#f3e8d8;font-size:22px;font-weight:800}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.product{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.p-img{height:190px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;position:relative}
+.p1{background:linear-gradient(135deg,#8c5a2b,#3d2615)}
+.p2{background:linear-gradient(135deg,#4a3a2e,#1d1511)}
+.p3{background:linear-gradient(135deg,#a67c52,#5d3f24)}
+.p4{background:linear-gradient(135deg,#2f5d3a,#152a1a)}
+.p5{background:linear-gradient(135deg,#b88a4a,#6b4a23)}
+.p6{background:linear-gradient(135deg,#7a6a5a,#2f2721)}
+.p-img::after{content:"MASÍV 40mm";position:absolute;top:12px;left:12px;background:rgba(255,255,255,.2);backdrop-filter:blur(6px);font-size:11px;padding:4px 10px;border-radius:999px;letter-spacing:.5px}
+.p-body{padding:18px}
+.price{font-weight:800;font-size:20px;margin:8px 0}
+.tag{font-size:12px;font-weight:700;background:#f3e8d8;padding:4px 10px;border-radius:999px;display:inline-block;margin-right:6px}
+.filters{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.filters button{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:700}
+.filters button.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.wood-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.wood-table th,.wood-table td{padding:14px 16px;text-align:left;font-size:15px}
+.wood-table th{background:var(--dark);color:#fff}
+.wood-table tr+tr td{border-top:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.step b{font-size:28px;color:var(--accent)}
+.config{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+label{font-weight:700;font-size:14px;display:block;margin:14px 0 6px}
+select,input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #d8c9b8;background:#fffdf9;font-size:15px}
+.result{background:var(--dark);color:#fdf6ec;border-radius:20px;padding:24px;position:sticky;top:88px}
+.result h3{margin-bottom:10px}
+.big-price{font-size:42px;font-weight:800;margin:6px 0}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stars{color:#d99a2b;letter-spacing:2px;margin-bottom:8px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+footer{background:#1d1511;color:#cbb9a7;padding:36px 0;margin-top:40px}
+footer a{text-decoration:underline}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:#1d1511;color:#fff;padding:14px 22px;border-radius:999px;transition:.3s;opacity:0;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr}h1{font-size:38px}.grid3,.products,.reviews,.steps{grid-template-columns:1fr 1fr}.config,.contact-grid{grid-template-columns:1fr}.result{position:static}.links{display:none}.links.open{display:flex;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 20px;border-bottom:1px solid var(--line)}.burger{display:block}
+}
+@media(max-width:560px){.grid3,.products,.reviews,.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<div class="logo">Drevo<span>Stol</span>.</div>
+<nav class="links" id="navLinks">
+<a href="#domov">Domov</a>
+<a href="#katalog">Katalóg</a>
+<a href="#drevo">Druhy dreva</a>
+<a href="#proces">Výroba</a>
+<a href="#konfigurator">Konfigurátor</a>
+<a href="#kontakt">Kontakt</a>
+</nav>
+<div style="display:flex;gap:10px;align-items:center">
+<a href="#konfigurator" class="btn">Nezáväzná cenová kalkulácia</a>
+<button class="burger" id="burger" aria-label="menu">☰</button>
+</div>
+</div>
+</header>
+
+<div class="container hero" id="domov">
+<div>
+<div class="badge">● Rodinná stolárska dielňa • od 1998 • Slovensko</div>
+<h1>Masívne drevené stoly, <em>ktoré vydržia generácie.</em></h1>
+<p>Vyrábame jedálenské, pracovné a konferenčné stoly z dubu, orecha a buka. Každý kus je originál — bez dýhy, bez lamina. Len poctivé drevo, olej a remeslo.</p>
+<div class="hero-cta">
+<a href="#katalog" class="btn">Pozrieť stoly</a>
+<a href="#konfigurator" class="btn btn-light">Nakonfigurovať na mieru</a>
+</div>
+<div class="stats">
+<div><b>850+</b><span>vyrobených stolov</span></div>
+<div><b>25 rokov</b><span>skúseností</span></div>
+<div><b>10 rokov</b><span>záruka na konštrukciu</span></div>
+</div>
+</div>
+<div class="hero-visual">
+<div class="table-draw">
+<div class="table-top"></div><div class="grain"></div>
+<div class="table-leg leg-l"></div><div class="table-leg leg-r"></div>
+</div>
+<h3 style="font-size:22px">Dubový stôl Hrádok — bestseller</h3>
+<p style="opacity:.8;font-size:15px">220 × 95 cm • olejovaný dub • 68 kg masívu. Dodanie do 3 týždňov.</p>
+</div>
+</div>
+
+<section class="container">
+<div class="grid3">
+<div class="card"><div class="icon">◈</div><h3>100% masív</h3><p>Žiadna dýha ani MDF. Dosky hrúbky 40 mm lepené z priebežných lamiel pre maximálnu stabilitu.</p></div>
+<div class="card"><div class="icon">⬢</div><h3>Na mieru za 3 týždne</h3><p>Vyberiete si rozmer, drevo a povrch. Stôl vyrobíme, naolejujeme a dovezieme až k vám domov.</p></div>
+<div class="card"><div class="icon">⬣</div><h3>Opraviteľný navždy</h3><p>Škrabance prebrúsime a preolejujeme. O 20 rokov bude stôl vyzerať lepšie ako dnes.</p></div>
+</div>
+</section>
+
+<section class="container" id="katalog">
+<h2 class="sec-title">Katalóg stolov</h2>
+<p class="sec-sub">Skladom aj na objednávku. Každý stôl vieme upraviť na mieru — dĺžka 120 až 320 cm.</p>
+<div class="filters" id="filters">
+<button data-f="all" class="active">Všetky</button>
+<button data-f="jedalensky">Jedálenské</button>
+<button data-f="pracovny">Pracovné</button>
+<button data-f="konferencny">Konferenčné</button>
+</div>
+<div class="products" id="productGrid">
+<div class="product" data-cat="jedalensky"><div class="p-img p1">HRÁDOK</div><div class="p-body"><span class="tag">Dub</span><span class="tag">Bestseller</span><h3>Hrádok 220</h3><p style="color:#66594d;font-size:14px">Jedálenský stôl pre 8–10 osôb. Skosená hrana, čierne kovové nohy.</p><div class="price">1 190 €</div><button class="btn" onclick="vybrat('Hrádok 220')">Vybrať tento stôl</button></div></div>
+<div class="product" data-cat="jedalensky"><div class="p-img p2">ORECHOVO</div><div class="p-body"><span class="tag">Orech</span><h3>Orechovo 200</h3><p style="color:#66594d;font-size:14px">Americký orech, prírodný olej. Luxusná kresba dreva.</p><div class="price">1 690 €</div><button class="btn" onclick="vybrat('Orechovo 200')">Vybrať tento stôl</button></div></div>
+<div class="product" data-cat="pracovny"><div class="p-img p3">ATELIÉR</div><div class="p-body"><span class="tag">Buk</span><h3>Ateliér 160</h3><p style="color:#66594d;font-size:14px">Pracovný stôl s káblovým žľabom. Ideálny do home-office.</p><div class="price">790 €</div><button class="btn" onclick="vybrat('Ateliér 160')">Vybrať tento stôl</button></div></div>
+<div class="product" data-cat="konferencny"><div class="p-img p4">PORADA XL</div><div class="p-body"><span class="tag">Dub</span><h3>Porada XL 300</h3><p style="color:#66594d;font-size:14px">Konferenčný stôl pre 12 osôb. Stredový panel na kabeláž.</p><div class="price">2 290 €</div><button class="btn" onclick="vybrat('Porada XL 300')">Vybrať tento stôl</button></div></div>
+<div class="product" data-cat="jedalensky"><div class="p-img p5">VIDIEK</div><div class="p-body"><span class="tag">Jaseň</span><h3>Vidiek 180</h3><p style="color:#66594d;font-size:14px">Rustikálny stôl s priznanými sučkami a živou hranou.</p><div class="price">990 €</div><button class="btn" onclick="vybrat('Vidiek 180')">Vybrať tento stôl</button></div></div>
+<div class="product" data-cat="pracovny"><div class="p-img p6">LOFT MINI</div><div class="p-body"><span class="tag">Dub</span><h3>Loft Mini 140</h3><p style="color:#66594d;font-size:14px">Kompaktný stôl do bytu. Dub + kov, výška 75 cm.</p><div class="price">650 €</div><button class="btn" onclick="vybrat('Loft Mini 140')">Vybrať tento stôl</button></div></div>
+</div>
+</section>
+
+<section class="container" id="drevo">
+<h2 class="sec-title">Z akého dreva vyrábame?</h2>
+<p class="sec-sub">Drevo dovážame z certifikovaných slovenských lesov (FSC). Pred výrobou sušíme na 8% vlhkosť.</p>
+<table class="wood-table">
+<tr><th>Drevo</th><th>Tvrdosť</th><th>Vzhľad</th><th>Cena</th><th>Vhodné na</th></tr>
+<tr><td><b>Dub</b></td><td>Veľmi vysoká</td><td>Zlatistohnedý, výrazná kresba</td><td>od 1 190 €</td><td>Jedálenské stoly, denné zaťaženie</td></tr>
+<tr><td><b>Orech</b></td><td>Vysoká</td><td>Tmavohnedý, elegantný</td><td>od 1 690 €</td><td>Reprezentačné a dizajnové interiéry</td></tr>
+<tr><td><b>Buk</b></td><td>Vysoká</td><td>Svetlý, jemný, čistý</td><td>od 650 €</td><td>Pracovné stoly, škandinávsky štýl</td></tr>
+<tr><td><b>Jaseň</b></td><td>Veľmi vysoká</td><td>Svetlý s kontrastnou kresbou</td><td>od 990 €</td><td>Rustikálne stoly, živá hrana</td></tr>
+</table>
+</section>
+
+<section class="container" id="proces">
+<h2 class="sec-title">Ako vzniká váš stôl?</h2>
+<p class="sec-sub">Od výberu fošne až po finálny olej – 4 kroky, 60+ hodín ručnej práce.</p>
+<div class="steps">
+<div class="step"><b>01</b><h3>Výber dreva</h3><p>Spolu vyberieme fošne. Fotky materiálu posielame pred rezom.</p></div>
+<div class="step"><b>02</b><h3>Hobľovanie a lepenie</h3><p>Dosku lepíme, lisujeme 24 hodín a hobľujeme na presnú hrúbku 40 mm.</p></div>
+<div class="step"><b>03</b><h3>Brúsenie a olejovanie</h3><p>3× brúsenie + 2× tvrdý voskový olej Osmo. Vodoodolný, potravinársky nezávadný.</p></div>
+<div class="step"><b>04</b><h3>Dovoz a montáž</h3><p>Dovezieme po celom Slovensku a Česku, zmontujeme a odvezieme obaly.</p></div>
+</div>
+</section>
+
+<section class="container" id="konfigurator">
+<h2 class="sec-title">Konfigurátor stola na mieru</h2>
+<p class="sec-sub">Zvoľte parametre a hneď vidíte orientačnú cenu vrátane dopravy.</p>
+<div class="config">
+<div class="form-card">
+<label for="model">Model</label>
+<select id="model">
+<option value="650">Loft Mini — od 650 €</option>
+<option value="790">Ateliér — od 790 €</option>
+<option value="990">Vidiek — od 990 €</option>
+<option value="1190" selected>Hrádok — od 1 190 €</option>
+<option value="1690">Orechovo — od 1 690 €</option>
+<option value="2290">Porada XL — od 2 290 €</option>
+</select>
+<label for="drevoSel">Drevo</label>
+<select id="drevoSel">
+<option value="0">Dub (v cene)</option>
+<option value="150">Buk (+150 €)</option>
+<option value="200">Jaseň (+200 €)</option>
+<option value="500">Americký orech (+500 €)</option>
+</select>
+<label for="dlzka">Dĺžka stola: <span id="dlzkaVal">220 cm</span></label>
+<input type="range" id="dlzka" min="120" max="320" value="220" step="10">
+<label for="povrch">Povrchová úprava</label>
+<select id="povrch">
+<option value="0">Prírodný olej (v cene)</option>
+<option value="80">Biely olej (+80 €)</option>
+<option value="120">Dymový / tmavý mor (+120 €)</option>
+<option value="180">Extra matný lak 2K (+180 €)</option>
+</select>
+<label for="nohy">Nohy</label>
+<select id="nohy">
+<option value="0">Čierny kov U-rám (v cene)</option>
+<option value="200">Masívne drevené (+200 €)</option>
+<option value="300">Dizajnový pavúk (+300 €)</option>
+</select>
+</div>
+<div class="result">
+<h3>Váš stôl</h3>
+<p id="sumar" style="opacity:.85;font-size:15px">Hrádok • Dub • 220 cm</p>
+<div class="big-price" id="cena">1 190 €</div>
+<p style="opacity:.7;font-size:14px">Vrátane oleja, montáže a dopravy po SR. Dodanie 2–3 týždne.</p>
+<br>
+<a href="#kontakt" class="btn" style="background:#fff;color:#1d1511;width:100%;text-align:center">Odoslať dopyt</a>
+</div>
+</div>
+</section>
+
+<section class="container">
+<h2 class="sec-title">Recenzie zákazníkov</h2>
+<div class="reviews">
+<div class="card"><div class="stars">★★★★★</div><p>„Stôl Hrádok je srdcom našej kuchyne. Po dvoch rokoch s deťmi ani škrabanec – stačilo preolejovať.“</p><br><b>— Petra K., Bratislava</b></div>
+<div class="card"><div class="stars">★★★★★</div><p>„Do kancelárie sme brali 3-metrovú Poradu. Dovoz, montáž, komunikácia – všetko na jednotku.“</p><br><b>— Martin H., Žilina</b></div>
+<div class="card"><div class="stars">★★★★★</div><p>„Orechovo vyzerá neskutočne. Každá návšteva sa pýta, odkiaľ ho máme.“</p><br><b>— Zuzana a Tomáš, Košice</b></div>
+</div>
+</section>
+
+<section class="container" id="kontakt">
+<h2 class="sec-title">Dopyt / kontakt</h2>
+<p class="sec-sub">Napíšte nám rozmer a predstavu. Ozveme sa do 24 hodín s návrhom a presnou cenou.</p>
+<div class="contact-grid">
+<div class="form-card">
+<label for="meno">Meno</label><input id="meno" placeholder="Vaše meno">
+<label for="email">E-mail</label><input id="email" type="email" placeholder="vas@email.sk">
+<label for="sprava">Správa</label><textarea id="sprava" rows="5" placeholder="Napr.: Chcem dubový stôl 200×90 cm, biele nohy..."></textarea>
+<br><br><button class="btn" onclick="odoslat()">Odoslať dopyt</button>
+</div>
+<div class="card">
+<h3>DrevoStol, s.r.o.</h3><br>
+<p>Stolárska 12, 010 01 Žilina<br>Po–Pi: 8:00 – 16:30<br><br>📞 <b>0905 123 456</b><br>✉️ <b>info@drevostol.sk</b><br><br>Dielňu si môžete prísť pozrieť osobne – ukážeme vám vzorky dreva a rozpracované stoly.<br><br><b>Doprava:</b> SR zdarma, ČR 89 €<br><b>Záruka:</b> 10 rokov na konštrukciu</p>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
+<div><b style="color:#fff">DrevoStol.</b> Poctivé drevené stoly od 1998.<br>© 2026 DrevoStol, s.r.o.</div>
+<div><a href="#domov">Hore ↑</a> • Vyrobené s láskou k drevu na Slovensku</div>
+</div>
+</footer>
+<div class="toast" id="toast">Odoslané!</div>
+<script>
+const burger=document.getElementById('burger'),nav=document.getElementById('navLinks');
+burger.onclick=()=>nav.classList.toggle('open');
+document.querySelectorAll('#navLinks a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+
+// filter
+const fbtns=document.querySelectorAll('#filters button');
+fbtns.forEach(b=>b.onclick=()=>{
+ fbtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ const f=b.dataset.f;
+ document.querySelectorAll('#productGrid .product').forEach(p=>{
+  p.style.display=(f==='all'||p.dataset.cat===f)?'flex':'none';
+ });
+});
+
+// konfigurator
+const model=document.getElementById('model'),drevoSel=document.getElementById('drevoSel'),
+dlzka=document.getElementById('dlzka'),povrch=document.getElementById('povrch'),nohy=document.getElementById('nohy'),
+cena=document.getElementById('cena'),sumar=document.getElementById('sumar'),dlzkaVal=document.getElementById('dlzkaVal');
+function prepocitaj(){
+ const zaklad=+model.value, dpriplatok=+drevoSel.value, ppriplatok=+povrch.value, npriplatok=+nohy.value;
+ const dl=+dlzka.value;
+ const dlPriplatok=Math.round((dl-140)*3.2);
+ const total=zaklad+dpriplatok+ppriplatok+npriplatok+Math.max(0,dlPriplatok);
+ dlzkaVal.textContent=dl+' cm';
+ const modelName=model.options[model.selectedIndex].text.split(' — ')[0];
+ const drevoName=drevoSel.options[drevoSel.selectedIndex].text.split(' (')[0];
+ sumar.textContent=`${modelName} • ${drevoName} • ${dl} cm`;
+ cena.textContent=total.toLocaleString('sk-SK')+' €';
+}
+[model,drevoSel,dlzka,povrch,nohy].forEach(el=>el.oninput=prepocitaj);
+prepocitaj();
+function vybrat(nazov){
+ for(let o of model.options){if(o.text.startsWith(nazov.split(' ')[0])){model.value=o.value;break;}}
+ // skus najst presne
+ for(let o of model.options){if(o.text.includes(nazov)){model.value=o.value;break;}}
+ prepocitaj();
+ document.getElementById('konfigurator').scrollIntoView({behavior:'smooth'});
+ toast('Vybrali ste '+nazov+' — upravte si detaily.');
+}
+function toast(msg){
+ const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+ setTimeout(()=>t.classList.remove('show'),2600);
+}
+function odoslat(){
+ const m=document.getElementById('meno').value.trim(),e=document.getElementById('email').value.trim(),s=document.getElementById('sprava').value.trim();
+ if(!m||!e||!s){toast('Vyplňte prosím meno, e-mail aj správu.');return;}
+ if(!e.includes('@')){toast('Skontrolujte e-mail.');return;}
+ document.getElementById('sprava').value='';
+ toast('Ďakujeme '+m.split(' ')[0]+'! Ozveme sa do 24 hodín.');
+}
+</script>
+</body>
+</html>
